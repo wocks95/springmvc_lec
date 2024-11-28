@@ -5,8 +5,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.min</groupId>
-  <artifactId>app01</artifactId>
-  <name>app01</name>
+  <artifactId>app02</artifactId>
+  <name>app02</name>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
 

@@ -11,7 +11,7 @@ import lombok.ToString;
  * Spring Container 에 있는 bean 을 Setter 형식의 메소드의 매개변수에 주입(전달)하는 방식입니다. 
  * Setter 형식의 메소드에 @Autowired 를 한 번만 추가하면 됩니다.
  */
-@Component // Spring Container 에 Person 타입의 이름이 person인  bean 을 만들어둡니다.
+@Component // Spring Container 에 Person 타입의 이름이 person인 bean 을 만들어둡니다.
 @ToString
 public class Person {
 

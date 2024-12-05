@@ -30,7 +30,7 @@ COMMIT;
 
 * app06 Maven Project 만들기
 
-* pom.xml 수정하기 (신규 디펜던시 2개 : Java로 MySQL 사용하기 위한 Driver, 단위 테스트 junit과 함게 사용할 spring-test)
+* pom.xml 수정하기 (신규 디펜던시 2개 : Java로 MySQL 사용하기 위한 Driver, 단위 테스트 junit과 함께 사용할 spring-test)
 <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
 <dependency>
   <groupId>com.mysql</groupId>

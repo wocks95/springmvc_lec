@@ -23,7 +23,7 @@ import com.min.app06.dto.ContactDto;
  * DAO
  * 1. DataBase Access Object 
  * 2. 데이터 베이스에 접속해서 DB 처리를 수행하는 객체입니다.
- * 3. 기본적으로 Singleton Patten으로 생성합니다. (스프링은 Spring Container 에 beab을 만들 때 기본적으로 singleton 으로 만듭니다.)
+ * 3. 기본적으로 Singleton Patten으로 생성합니다. (스프링은 Spring Container 에 bean을 만들 때 기본적으로 singleton 으로 만듭니다.)
  */
 @Repository // DAO를 구현한 클래스라는 의미를 가진 @Component입니다. (Spring Container에 bean으로 등록됩니다.) 
             // Persistence Layer(영속 계층)에서 동작합니다.
@@ -137,28 +137,73 @@ public class ContactDaoImpl implements IContactDao {
     jdbcConnection.close(conn, ps, rs);
     return amount;
   }
-
-  @Override
+ 
+  @Override // 등록
   public int register(ContactDto contactDto) {
-    conn = jdbcConnection.getConnection();
-    jdbcConnection.close(conn, ps, rs);
+    // 등록 결과를 저장할 변수입니다.
+    int result = 0; // 초기 상태는 등록 실패 상태입니다.
     
-    return 0;
-  }
-
-  @Override
-  public int modify(ContactDto contactDto) {
+    // 데이터베이스에 접속합니다.
     conn = jdbcConnection.getConnection();
+    try {
+      // 실행할 쿼리문을 작성합니다. 인자 값은 ?로 표시합니다.
+      String aql = "INSERT INTO tbl_contact VALUES (null, ?, ?, ?, ?, CURDATE())";
+      // PresparedStatement 객체를 생성합니다.
+      ps = conn.prepareStatement(aql);
+      // 쿼리문에 인자 값을 전달합니다.
+      ps.setString(1, contactDto.getLast_name());
+      ps.setString(2, contactDto.getFirst_name());
+      ps.setString(3, contactDto.getEmail());
+      ps.setString(4, contactDto.getMobile());
+      // 쿼리문을 실행하고 결과를 받습니다. 결과가 0이면 등록 실패이고, 1이면 등록 성공입니다.
+      result = ps.executeUpdate();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    // 사용한 자원을 반납합니다.
     jdbcConnection.close(conn, ps, rs);
-    return 0;
+    //등록 결과를 반환합니다.
+    return result;
   }
 
-  @Override
+  @Override // 수정
+  public int modify(ContactDto contactDto) { 
+    int result = 0;
+    conn = jdbcConnection.getConnection();
+    try {
+      String sql = "UPDATE tbl_contact SET last_name = ?, first_name = ?, email = ?, mobile = ? WHERE contact_id = ?";
+      ps = conn.prepareStatement(sql);
+      ps.setString(1, contactDto.getLast_name());
+      ps.setString(2, contactDto.getFirst_name());
+      ps.setString(3, contactDto.getEmail());
+      ps.setString(4, contactDto.getMobile());
+      ps.setInt(5, contactDto.getContact_id());
+      result = ps.executeUpdate();
+      
+      
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    jdbcConnection.close(conn, ps, rs);
+    return result;
+  }
+
+  @Override // 삭제
   public int remove(int contact_id) {
+    int result = 0;
     conn = jdbcConnection.getConnection();
+    try {
+      String sql = "DELETE FROM tbl_contact WHERE contact_id = ?";
+      ps = conn.prepareStatement(sql);
+      ps.setInt(1, contact_id);
+      result = ps.executeUpdate();
+      
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     jdbcConnection.close(conn, ps, rs);
     
-    return 0;
+    return result;
   }
 
 

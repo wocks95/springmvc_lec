@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS db_app06;
-
 CREATE DATABASE IF NOT EXISTS db_app06;
+USE db_app06;
 
 DROP TABLE IF EXISTS tbl_contact;
 
@@ -18,3 +18,9 @@ CREATE TABLE IF NOT EXISTS tbl_contact
 INSERT INTO tbl_contact VALUES (null, 'james', 'dean', 'jamesdean@gmail.com', '010-1111-1111', '2024-12-01');
 INSERT INTO tbl_contact VALUES (null, 'john', 'park', 'johnpark@gmail.com', '010-2222-2222', '2024-12-02');
 INSERT INTO tbl_contact VALUES (null, 'micheal', 'jordan', 'micheljorden@gmail.com', '010-3333-3333', '2024-12-03');
+COMMIT;
+
+SELECT contact_id, last_name, first_name, email, mobile, create_dt FROM tbl_contact;
+
+
+

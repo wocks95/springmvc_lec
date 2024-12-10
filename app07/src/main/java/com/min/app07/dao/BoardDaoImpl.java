@@ -1,6 +1,8 @@
 package com.min.app07.dao;
 
 import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 import com.min.app07.dto.BoardDto;
@@ -31,8 +33,8 @@ public class BoardDaoImpl implements IBoardDao {
    *     delete(SQL's id[, parameter])
    */
   @Override
-  public List<BoardDto> selectBoardList() {
-    List<BoardDto> boardList = template.selectList("mybatis.mappers.boardMapper.selectBoardList");
+  public List<BoardDto> selectBoardList(String sort) {
+    List<BoardDto> boardList = template.selectList("mybatis.mappers.boardMapper.selectBoardList", sort);
     return boardList;
   }
 
@@ -47,7 +49,26 @@ public class BoardDaoImpl implements IBoardDao {
      BoardDto boardDto = template.selectOne("mybatis.mappers.boardMapper.selectBoardById", boardId);
     return boardDto;
   }
-
+  
+  @Override
+  public List<BoardDto> selectBoardSearchList(Map<String, Object> map) {
+    List<BoardDto> searchList = template.selectList("mybatis.mappers.boardMapper.selectBoardSearchList", map);
+    return searchList;
+  }
+  
+  @Override
+  public List<BoardDto> selectBoardPeriodList(Map<String, Object> map) {
+    List<BoardDto> periodList = template.selectList("mybatis.mappers.boardMapper.selectBoardPeriodList", map);
+    return periodList;
+  }
+  
+  @Override
+  public List<BoardDto> selectBoardIntegeratedSearch(Map<String, Object> map) {
+    List<BoardDto> list = template.selectList("mybatis.mappers.boardMapper.selectBoardIntegeratedSearch", map);
+    return list;
+  }
+  
+  
   @Override
   public int insertBoard(BoardDto boardDto) {
    int result = template.insert("mybatis.mappers.boardMapper.insertBoard", boardDto);
@@ -66,4 +87,11 @@ public class BoardDaoImpl implements IBoardDao {
     return result;
   }
 
+  @Override
+  public int deleteSelectedBoard(int[] numbers) {
+    int result = template.delete("mybatis.mappers.boardMapper.deleteSelectedBoard", numbers);
+    return result;
+  }
+  
+  
 }

@@ -19,7 +19,9 @@ public class BoardDto {
   private int boardId;
   private String title;
   private String contents;
-  private Timestamp create_dt;
-  private int usrId;
+  private Timestamp createDt;
+  // private int usrId;
+  private UserDto userDto; 
+  
   
 }

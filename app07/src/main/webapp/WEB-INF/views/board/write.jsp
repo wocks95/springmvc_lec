@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Welcome</title>
+<title>Board write</title>
 <style>
   .form-wrap {
     width: 500px;
@@ -21,8 +21,8 @@
     <h1>게시글 작성하기</h1>
     <form action="${contextPath}/board/register.do" method="post">
       <div class="usr-wrap">
-        <label for="usr_email">작성자</label>
-        <input type="text" id="usr_email" name="usr_email" placeholder="이메일">
+        <label for="usrId">작성자</label>
+        <input type="text" id="usrId" name="userDto.usrId" placeholder="번호">
       </div>
       <div class="title-wrap">
         <label for="title">제목</label>

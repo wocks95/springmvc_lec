@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @Service // 서비스에서 사용하는 @Component입니다. Spring Container에 IBoardService 타입의 bean이 생성됩니다.
 public class BoardServiceImpl implements IBoardService {
 
-  private IBoardDao boardDao;
+  private final IBoardDao boardDao;
   
 
   @Override
@@ -36,5 +36,60 @@ public class BoardServiceImpl implements IBoardService {
     // 목록과 전체 목록의 개수를 Map으로 반환하기
     return Map.of("boardList", boardList, "boardCount", boardCount);
   }
+  
+  @Override
+  public BoardDto getBoardById(int boardId) {
+    
+    // 상세정보를 받아와서 컨트롤러로 반환합니다.
+    return boardDao.selectBoardById(boardId);
+  }
 
+  @Override
+  public String modifyBoard(BoardDto boardDto) {
+    
+    // 수정한 뒤 수정 결과를 텍스트로 반환합니다.
+    
+    return boardDao.updateBoard(boardDto) == 1 ? "수정 성공" : "수정 실패";
+  }
+  
+  @Override
+  public String removeBoard(int boardId) {
+    // 삭제한 뒤 삭제 결과를 텍스트로 반환합니다.  
+    
+    return boardDao.deleteBoard(boardId) == 1 ? "삭제 성공" : "삭제 실패";
+  }
+ 
+  @Override
+  public String removeBoardList(String[] numbers) {
+    
+    // 삭제한 뒤 삭제 결과를 텍스트로 반환합니다.
+    return boardDao.deleteSelectedBoard(numbers) == numbers.length ? "선택 삭제 성공" : "선택 삭제 실패";
+  }
+  
+  @Override
+  public String registerBoard(BoardDto boardDto) {
+    
+    // 삽입한 뒤 삭제 결과를 텍스트로 반환합니다.
+    return boardDao.insertBoard(boardDto) == 1 ? "삽입 성공" : "삽입 실패";
+  }
+  
+  @Override
+  public Map<String, Object> getSearchList(HttpServletRequest request) {
+    
+    // 요청 파라미터를 Map으로 만듭니다.
+    Map<String, Object> param = Map.of("title", request.getParameter("title")
+                                     , "usrEmail", request.getParameter("usrEmail")
+                                     , "usrName", request.getParameter("usrName")
+                                     , "beginDt", request.getParameter("beginDt")
+                                     , "endDt", request.getParameter("endDt"));
+    // 검색 결과 목록을 가져옵니다.
+    List<BoardDto> boardList = boardDao.selectBoardIntegeratedSearch(param);
+    
+    // 검색 결과 개수를 가져옵니다.
+    int boardCount = boardDao.selectBoardIntegeratedSearchCount(param);
+    
+    // 검색 결과 목록과 검색 결과 개수를 Map으로 반환합니다.
+    return Map.of("boardList", boardList, "boardCount", boardCount);
+  }
+  
 }

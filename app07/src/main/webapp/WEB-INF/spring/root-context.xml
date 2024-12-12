@@ -15,7 +15,7 @@
     <property name="password" value="greenit"/>
   </bean>
   
-  <!-- 2. com.zaxxer.hikari.HikariConfig -->
+  <!-- 2. com.zaxxer.hikari.HikariDataSource -->
   <bean id="hikariDataSouce" class="com.zaxxer.hikari.HikariDataSource">
     <constructor-arg ref="hikariConfig"/>
   </bean>

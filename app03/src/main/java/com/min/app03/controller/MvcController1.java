@@ -34,7 +34,7 @@ public class MvcController1 {
    *  
    * 1. 요청 주소와 요청 메소드를 작성하는 Annotation 입니다.
    * 2. 요청 주소 (value)
-   *    1) value="/"     : comtext path 요청을 의미합니다. http://127.0.0.1:8080/app03
+   *    1) value="/"     : contextPath 요청을 의미합니다. http://127.0.0.1:8080/app03
    *    2) value="/list" : /list 요청을 의미합니다.        http://127.0.0.1:8080/app03/list
    *    3) value={"/list", "/list.do"} : 2개 이상의 요청을 의미합니다. http://127.0.0.1:8080/app03/list
    *                                                                 http://127.0.0.1:8080/app03/list.do

@@ -22,7 +22,7 @@ public class MvcController1 {
   public String login(
       HttpServletRequest request //모든 요청 정보(요청 파라미터, 세션)를 관리하는 인터페이스
       ) { // Session 영역은 request 영역에서 추출하게 된다!! 따라서 먼저 request를 주입 받고 session을 추출한다.
-     // 요청 파라미터 받습니다.
+     // 요청 파라미터 받습니다. (서버 측에 저장함)
      String id = request.getParameter("id");
      String pw = request.getParameter("pw");
      

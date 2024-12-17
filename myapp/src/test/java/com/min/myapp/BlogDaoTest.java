@@ -11,7 +11,8 @@ import com.min.myapp.dao.IBlogDao;
 import com.min.myapp.dto.BlogDto;
 
 
-@SpringJUnitConfig(locations = {"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
+@SpringJUnitConfig(locations = {"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
+                                "file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 class BlogDaoTest {
 
   @Autowired
@@ -20,18 +21,18 @@ class BlogDaoTest {
   
   @Test
   void 목록테스트() {
-    assertEquals(1000, blogDao.selectBlogList().get(0).getHit());
+    assertEquals(100, blogDao.selectBlogList().get(0).getHit());
   }
 
   @Test
   void 상세테스트() {
     int blog_id = 2;
-    assertEquals(100, blogDao.selectBlogById(blog_id).getTitle());
+    assertEquals("표고버섯구이", blogDao.selectBlogById(blog_id).getTitle());
   }
   
   @Test
   void 전체행개수테스트() {
-    assertEquals(3, blogDao.selectBlogCount());
+    assertEquals(2, blogDao.selectBlogCount());
   }
   @Test
   void 수정테스트() {

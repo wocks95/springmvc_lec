@@ -107,26 +107,67 @@ public class BlogDaoImpl implements IBlogDao {
 
   @Override
   public int insertBlog(BlogDto blogDto) {
-    // TODO Auto-generated method stub
-    return 0;
+    int result = 0;
+    try {
+      connect();
+      String sql = "INSERT INTO tbl_blog VALUES (NULL, ?, ?, ?, 0, NULL, NOW())";
+      ps = conn.prepareStatement(sql);
+      ps.setString(1, blogDto.getTitle());
+      ps.setString(2, blogDto.getContents());
+      ps.setString(3, blogDto.getUser_email());
+      result = ps.executeUpdate();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return result;
   }
+  
 
   @Override
   public int updateBlog(BlogDto blogDto) {
-    // TODO Auto-generated method stub
-    return 0;
+    int result = 0;
+    try {
+      connect();
+      String sql = "UPDATE tbl_blog SET title = ?, contents = ?, modify_dt = NOW() WHERE blog_id = ?";
+      ps = conn.prepareStatement(sql);
+      ps.setString(1, blogDto.getTitle());
+      ps.setString(2, blogDto.getContents());
+      ps.setInt(3, blogDto.getBlog_id());
+      result = ps.executeUpdate();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return result;
   }
 
   @Override
   public int updateHit(int blog_id) {
-    // TODO Auto-generated method stub
-    return 0;
+    int result = 0;
+    try {
+      connect();
+      String sql = "UPDATE tbl_blog SET hit = hit + 1 WHERE blog_id = ?";
+      ps = conn.prepareStatement(sql);
+      ps.setInt(1, blog_id);
+      result = ps.executeUpdate();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return result;
   }
-
+  
   @Override
   public int deleteBlog(int blog_id) {
-    // TODO Auto-generated method stub
-    return 0;
+    int result = 0;
+    try {
+      connect();
+      String sql = "DELETE FROM tbl_blog WHERE blog_id = ?";
+      ps = conn.prepareStatement(sql);
+      ps.setInt(1, blog_id);
+      result = ps.executeUpdate();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return result;
   }
 
 }

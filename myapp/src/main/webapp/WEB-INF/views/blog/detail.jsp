@@ -2,55 +2,70 @@
 <%@ taglib uri ="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri ="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>"/>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewpoint" content="width=device-width, initial-scale=1.0">
-<title>Blog Detail</title>
-</head>
-<body>
-  <h1>${blog.title} 블로그</h1>
-  <form id="form-detail" method="get">
+  <jsp:include page="../layout/header.jsp">
+    <jsp:param name="title" value="${blog.title}"/>
+  </jsp:include>
+  
+  <style>
+    #contents {
+      width: 200px;
+      min-height: 200px;
+    }
+  </style>
+  
+ <form id="form-detail" method="post">
+  
+    <input type="hidden" name="blog_id" value="${blog.blog_id}">
+  
+    <div>작성자 ${blog.user_email}</div>
+    <div>작성일시 <fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${blog.create_dt}"/></div>
+    <div>수정일시 <fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${blog.modify_dt}"/></div>
+  
     <div>
-      <label for="blog_id">BLOG ID</label>
-      <input type="text" name="blog_id" id="blog_id" value="${blog.blog_id}">
-    </div>
-    <div>
-      <label for="title">TLTLE</label>
+      <label for="title">제목</label>
       <input type="text" name="title" id="title" value="${blog.title}">
     </div>
+  
     <div>
-      <label for="contents">CONTENTS</label>
-      <input type="text" name="contents" id="contents" value="${blog.contents}">
-    </div>
-    <div>
-      <label for="user_email">USER EMAIL</label>
-      <input type="text" name="user_email" id="user_email" value="${blog.user_email}">
-    </div>
-    <div>
-      <label for="hit">HIT</label>
-      <input type="text" name="hit" id="hit" value="${blog.hit}">
-    </div>
-    <div>
-      <label for="modify_dt">MODIFY DT</label>
-      <input type="text" name="modify_dt" id="modify_dt" value="${blog.modify_dt}">
-    </div>
-    <div>
-      <label for="create_dt">CREATE DT</label>
-      <input type="text" name="create_dt" id="create_dt" value="${blog.create_dt}">
+      <textarea name="contents" id="contents" placeholder="내용">${blog.contents}</textarea>
     </div>
     
-    
-    
+    <div>
+      <button type="reset">수정 초기화</button>
+      <button type="button" id="btn-modify">수정 완료</button>
+      <button type="button" id="btn-remove">블로그 삭제</button>
+      <button type="button" id="btn-list">블로그 목록</button>
+    </div>
     
   </form>
-
-
-  <script>
-     const formDetail = document.getElementById('form-Detail');
   
+  <script>
+  
+    const formDetail = document.getElementById('form-detail');
+    const title = document.getElementById('title');
+  
+    document.getElementById('btn-modify').addEventListener('click', (event) => {
+      if(title.value === '') {
+        alert('제목은 필수입니다.');
+        title.focus();
+        return;
+      }
+      formDetail.action = '${contextPath}/blog/modify.do';
+      formDetail.submit();
+    })
+    
+    document.getElementById('btn-remove').addEventListener('click', (event) => {
+      if(confirm('현재 블로그를 삭제할까요?')) {        
+        formDetail.action = '${contextPath}/blog/remove.do';
+        formDetail.submit();
+      }
+    })
+    
+    document.getElementById('btn-list').addEventListener('click', (event) => {
+      location.href = '${contextPath}/blog/list.do';
+    })
   
   </script>
+
 </body>
 </html>

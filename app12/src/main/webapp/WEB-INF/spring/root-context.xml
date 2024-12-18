@@ -14,7 +14,7 @@
   <!-- 1. com.zaxxer.hiKari.HikariConfig -->
   <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
     <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-    <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/db_app11?serverTimezone=Asia/Seoul"/>
+    <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/db_app12?serverTimezone=Asia/Seoul"/>
     <property name="username" value="greenit"/>
     <property name="password" value="greenit"/>
   </bean>
@@ -54,7 +54,7 @@
   
   <!-- 3.Advice가 동작할 PointCut 등록하기 -->
   <aop:config>
-    <aop:pointcut expression="execution(* com.min.app11.service.*Impl.*(..))" id="txPointCut"/>
+    <aop:pointcut expression="execution(* com.min.app12.service.*Impl.*(..))" id="txPointCut"/>
     <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
   </aop:config>
   
@@ -62,3 +62,4 @@
   <aop:aspectj-autoproxy />
   
 </beans>
+

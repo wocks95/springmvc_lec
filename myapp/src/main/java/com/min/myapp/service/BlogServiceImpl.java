@@ -45,7 +45,7 @@ public class BlogServiceImpl implements IBlogService {
   }
 
   @Override
-  public String modifyBLog(BlogDto blogDto) {
+  public String modifyBlog(BlogDto blogDto) {
     // TODO Auto-generated method stub
     return null;
   }

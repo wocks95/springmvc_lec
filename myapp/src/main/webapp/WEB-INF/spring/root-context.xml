@@ -54,7 +54,7 @@
   
   <!-- 3.Advice가 동작할 PointCut 등록하기 -->
   <aop:config>
-    <aop:pointcut expression="execution(* com.min.app11.service.*Impl.*(..))" id="txPointCut"/>
+    <aop:pointcut expression="execution(* com.min.myapp.service.*Impl.*(..))" id="txPointCut"/>
     <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
   </aop:config>
   

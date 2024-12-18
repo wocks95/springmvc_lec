@@ -6,25 +6,11 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="${contextPath}/assets/css/init.css?dt=<%=System.currentTimeMillis()%>">
-<link rel="stylesheet" href="${contextPath}/assets/css/header.css?dt=<%=System.currentTimeMillis()%>">
-<script src="${contextPath}/assets/js/main.js?dt=<%=System.currentTimeMillis()%>"></script>
-<title>${param.title}</title> <!-- 상단에 고정 -->
+<meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+<title>Welcome</title>
 </head>
 <body>
-  
-  <h1 id="logo" class="logo">Coupang</h1>
-  
-  <nav class="gnb-wrap">
-    <ul class="gnb">
-      <li><a href="${contextPath}/blog/list.do">블로그</a></li>
-      <li><a href="${contextPath}/notice/list.do">공지사항</a></li>
-      <li><a href="${contextPath}/notice/list.do">공지사항</a></li>
-      <li><a href="${contextPath}/notice/list.do">공지사항</a></li>
-      <li><a href="${contextPath}/notice/list.do">공지사항</a></li>
-    </ul>
-  </nav>
+  <h1>Welcome Page</h1>
   <!-- 로그인이 안되면 회원가입을 보여줌 -->
   <c:if test="${empty sessionScope.loginUser}">
     <button type="button" id="btn-login-form">로그인</button>
@@ -62,10 +48,17 @@
       logout();
     </script>
   </c:if>
-
+  <div>
+    <button type="button" id="btn-board-form">게시글 작성</button>
+  </div>
   
   <script>
-
+    function boardForm() {
+      document.getElementById('btn-board-form').addEventListener('click', (event) => {
+        location.href = '${contextPath}/board/write.do';
+      })
+    }
+    
     function displayMsg() {
       const msg ='${msg}';
       if(msg !=='')
@@ -75,5 +68,5 @@
     displayMsg();
     
   </script>
-
-   <div class="wrap">
+</body>
+</html>

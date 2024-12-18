@@ -11,7 +11,7 @@ public interface IBlogService {
   int increseBlogHit(int blog_id);
   BlogDto getBlogById(int blog_id);
   String registerBlog(BlogDto blogDto);
-  String modifyBLog(BlogDto blogDto);
+  String modifyBlog(BlogDto blogDto);
   String removeBlog(int blog_id);
 
  

@@ -8,6 +8,8 @@
 </jsp:include>
 <!-- main.jsp의 title은 Welcome(header.jsp)을 쓰겠다는 의미 -->  
   <img src="${contextPath}/assets/images/animal2.jpg">
+  
+ 
 
 </div>
   

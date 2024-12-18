@@ -3,16 +3,16 @@
 <configuration>
   <!-- MyBatis 환경 설정 세부 항목, 밑줄을 CamelCase로 바꾼다. -->
   <settings>
-    <setting name="mapUnderscoreToCamelCase" value="true"/>
+    <setting name="mapUnderscoreToCamelCase" value="true"/> 
   </settings>
   
   <!-- 매퍼에서 사용할 클래스의 별명 지정하기 -->
   <typeAliases>
-    <typeAlias type="com.min.myapp.dto.AttachDto" alias="AttachDto"/>
-    <typeAlias type="com.min.myapp.dto.BoardDto" alias="BoardDto"/>
-    <typeAlias type="com.min.myapp.dto.UserDto" alias="UserDto"/>
-    <typeAlias type="com.min.myapp.dto.NoticeDto" alias="NoticeDto"/> 
+    <typeAlias type="com.min.app12.dto.BoardDto" alias="BoardDto"/>
+    <typeAlias type="com.min.app12.dto.UserDto" alias="UserDto"/>
   </typeAliases>
-
-
+  
+  
+  
+  
 </configuration>

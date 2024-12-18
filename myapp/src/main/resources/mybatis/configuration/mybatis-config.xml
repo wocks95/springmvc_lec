@@ -9,7 +9,6 @@
   <!-- 매퍼에서 사용할 클래스의 별명 지정하기 -->
   <typeAliases>
     <typeAlias type="com.min.myapp.dto.AttachDto" alias="AttachDto"/>
-    <typeAlias type="com.min.myapp.dto.BoardDto" alias="BoardDto"/>
     <typeAlias type="com.min.myapp.dto.UserDto" alias="UserDto"/>
     <typeAlias type="com.min.myapp.dto.NoticeDto" alias="NoticeDto"/> 
   </typeAliases>

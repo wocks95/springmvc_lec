@@ -71,7 +71,7 @@
       if(msg !=='')
         alert(msg);
     }
-    boardForm();
+   
     displayMsg();
     
   </script>

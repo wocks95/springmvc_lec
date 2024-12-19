@@ -13,9 +13,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.min.myapp.dto.BlogDto;
 import com.min.myapp.service.IBlogService;
 
-
-
-
 @RequestMapping("/blog")
 @Controller
 public class BlogController {
@@ -35,6 +32,7 @@ public class BlogController {
     model.addAttribute("count", map.get("count"));
     return "blog/list";
   }
+  
   @RequestMapping(value="/increseHit.do")
   public String increseHit(
       @RequestParam(value="blog_id", required=false, defaultValue="0") int blog_id) {
@@ -84,7 +82,5 @@ public class BlogController {
     redirectAttributes.addFlashAttribute("msg", blogService.registerBlog(blogDto));
     return "redirect:/blog/list.do";
   }
-  
-  
   
 }

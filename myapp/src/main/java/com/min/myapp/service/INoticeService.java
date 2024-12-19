@@ -15,5 +15,4 @@ public interface INoticeService {
   Map<String, Object> getNoticeById(int noticeId);
   String removeNotice(int noticeId);
   ResponseEntity<Resource> download(int attachId, String userAgent);
-  
 }

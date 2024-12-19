@@ -12,9 +12,10 @@
       background-color: lightblue;
     }
   </style>
+  <h1>Blog List</h1>
   
   <div>
-    <button type="button" id="btn-write">작성</button>
+    <button type="button" id="btn-write">새 블로그 작성하기</button>
   </div>
   
   <table border="1">
@@ -39,20 +40,24 @@
   </table>
   
   <script>
-    document.getElementById('btn-write').addEventListener('click', (event) => {
-      location.href = '${contextPath}/blog/write.do';
-    })
-    const blogs = document.getElementsByClassName('blogs');
-    for(const blog of blogs) {
-      blog.addEventListener('click', (event) => {
-        location.href = '${contextPath}/blog/increseHit.do?blog_id=' + event.currentTarget.dataset.blogId;  // data- 뒷 부분을 저장할 때 대시(-)는 camel case 로 변환되어 저장됩니다. 
-      })
+  
+   function toBlogWrite() {
+     document.getElementById('btn-write').addEventListener('click', (event) => {
+       location.href = '${contextPath}/blog/write.do';
+     })
     }
-    
-    const msg = '${msg}';
-    if(msg !== '') {
-      alert(msg);
+   function toBlogDetail() {
+     const blogs = document.getElementsByClassName('blogs');
+     for(const blog of blogs) {
+       blog.addEventListener('click', (event) => {
+         location.href = '${contextPath}/blog/increseHit.do?blog_id=' + event.currentTarget.dataset.blogId;  // data- 뒷 부분을 저장할 때 대시(-)는 camel case 로 변환되어 저장됩니다. 
+       })
+      }
     }
+   
+   toBlogWrite();
+   toBlogDetail();
+   
   </script>
   
 </body>

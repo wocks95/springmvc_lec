@@ -6,9 +6,9 @@ DROP TABLE IF EXISTS tbl_board;
 DROP TABLE IF EXISTS tbl_user;
 CREATE TABLE IF NOT EXISTS tbl_user
 (
-    usr_id    INT AUTO_INCREMENT,
-    usr_email VARCHAR(100) NOT NULL UNIQUE,
-    usr_name  VARCHAR(100),
+    usr_id      INT AUTO_INCREMENT,
+    usr_email   VARCHAR(100) NOT NULL UNIQUE,
+    usr_name    VARCHAR(100),
     CONSTRAINT pk_user PRIMARY KEY (usr_id)
 )ENGINE=InnoDB COMMENT = '사용자';
 

@@ -86,9 +86,10 @@ public class NoticeServiceImpl implements INoticeService {
         if(attachResult == 0)
           return "첨부 파일 등록 실패";
         
-      } //if 
-    } // for 
-       
+      }  // for
+      
+    }
+    
     return "공지사항 등록 성공";
 
   }
@@ -140,11 +141,10 @@ public class NoticeServiceImpl implements INoticeService {
     }
     // 다운로드를 위한 응답 헤더(Response Header) 설정
     HttpHeaders responseHeader = new HttpHeaders();
-    
-    try {
-      responseHeader.add("Content-Disposition", "attachment; filename=" + originalFilename); // 다운로드 응답을 의미합니다. 다운로드 할 파일명을 originalFilename으로 결정합니다.
-      responseHeader.add("Content_Type", "application/octet-stream");                        // 응답 데이터의 타입을 의미합니다. 일반 바이너리 파일을 의미합니다.
-      responseHeader.add("Content-Length", resource.contentLength() + "");                   // 응답데이터의 길이를 의미합니다. 바이트 단위로 작성합니다.
+    try {      
+      responseHeader.add("Content-Disposition", "attachment; filename=" + originalFilename);  // 다운로드 응답을 의미합니다. 다운로드 할 파일명을 originalFilename으로 결정합니다.
+      responseHeader.add("Content-Type", "application/octet-stream");                         // 응답 데이터의 타입을 의미합니다. 일반 바이너리 파일을 의미합니다.
+      responseHeader.add("Content-Length", resource.contentLength() + "");                    // 응답 데이터의 길이를 의미합니다. 바이트 단위로 작성합니다.
     } catch (Exception e) {
       e.printStackTrace();
     }

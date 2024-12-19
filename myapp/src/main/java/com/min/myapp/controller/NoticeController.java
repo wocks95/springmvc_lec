@@ -17,11 +17,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.min.myapp.service.INoticeService;
 
 import lombok.RequiredArgsConstructor;
+
 @RequestMapping(value="/notice")
 @Controller
 @RequiredArgsConstructor
 public class NoticeController {
-  
+
   private final INoticeService noticeService;
   
   @RequestMapping(value="/list.do")
@@ -29,7 +30,6 @@ public class NoticeController {
     model.addAttribute("noticeList", noticeService.getNoticeList());
     return "notice/list";
   }
-  
   
   @RequestMapping(value="/write.do")
   public String write() {
@@ -41,7 +41,6 @@ public class NoticeController {
     redirectAttributes.addFlashAttribute("msg", noticeService.registNotice(multipartRequest));
     return "redirect:/notice/list.do";
   }
- 
   
   @RequestMapping(value="/detail.do")
   public String detail(int noticeId, Model model) {
@@ -50,21 +49,19 @@ public class NoticeController {
     model.addAttribute("attachList", map.get("attachList"));
     return "notice/detail";
   }
+  
   @RequestMapping(value="/remove.do")
   public String remove(int noticeId, RedirectAttributes redirectAttributes) {
     redirectAttributes.addFlashAttribute("msg", noticeService.removeNotice(noticeId));
     return "redirect:/notice/list.do";
   }
   
-  @ResponseBody // 페이지 이동 없이 응답을 처리하는 비동기 방식에서 필요합니다.
+  @ResponseBody  // 페이지 이동 없이 응답을 처리하는 비동기 방식에서 필요합니다.
   @RequestMapping(value="/download.do")
   public ResponseEntity<Resource> download(@RequestParam(name="attachId") int attachId
-                                         , @RequestHeader(name="User-Agent") String userAgent // 요청 헤더(User-Agent: 어떤 브라우저로 접속하였는지 확인할 수 있는 헤더 값)
+                                         , @RequestHeader(name="User-Agent") String userAgent  // 요청 헤더(User-Agent : 어떤 브라우저로 접속하였는지 확인할 수 있는 헤더 값)
       ) {
-    return noticeService.download(attachId, userAgent);
+    return noticeService.download(attachId, userAgent);    
   }
-  
-  
-  
   
 }

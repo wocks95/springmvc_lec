@@ -1,0 +1,20 @@
+location.href = '${contextPath}/user/login.form?url=' + location.href;
+			지금 현재 페이지 값을 변경하지 말라는 뜻 ↗
+02X= 16진수 관련 코드 (두자리수를 채우되, 없으면 0을 채울것)
+
+요청 순서
+web.wml
+DispatcherServlet
+  (servlet-context.xml)
+(interceptor 끼어들기)
+@Controller   
+@Service   
+@Repository
+
+myapp
+  로그인/로그아웃 구현하기
+  회원가입 구현하기
+  마이 페이지 구현하기
+    -프로필 이미지 첨부 가능하도록 tbl_user 수정하기(이미지 경로, 이름)
+    -회원탈퇴 버튼 넣어서 구현하기
+  인터셉터 동작 구현하기

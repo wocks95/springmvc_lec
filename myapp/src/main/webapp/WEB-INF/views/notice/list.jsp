@@ -33,15 +33,13 @@
     }
   
   
-    function msgHandle() {
-      const msg = '${msg}';
-      if(msg !== '')
-        alert(msg);
-    }
+  
     detailHandle();
-    msgHandle();
+   
     
   </script>
+
+</div>
 
 </body>
 </html>

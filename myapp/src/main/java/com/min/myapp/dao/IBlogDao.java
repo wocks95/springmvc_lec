@@ -15,5 +15,4 @@ public interface IBlogDao {
   int updateBlog(BlogDto blogDto);
   int updateHit(int blog_id);
   int deleteBlog(int blog_id);
-  
 }

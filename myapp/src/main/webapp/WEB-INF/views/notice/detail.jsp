@@ -6,8 +6,10 @@
   <jsp:param name="title" value="${n.noticeTitle}"/>
 </jsp:include>
 
-  <div>작성일지<fmt:formatDate value="${n.createdAt}" pattern="yyyy-MM-dd a hh:mm:ss"/></div>
-  
+  <h1>Notice Detail</h1>
+
+  <div>작성일시 <fmt:formatDate value="${n.createdAt}" pattern="yyyy-MM-dd a hh:mm:ss"/></div>
+
   <div style="background-color: beige;">
     <h4>첨부 파일</h4>
     <c:forEach items="${attachList}" var="a">

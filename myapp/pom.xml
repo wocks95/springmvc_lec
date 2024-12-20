@@ -22,7 +22,7 @@
   </properties>
   
   <dependencies>
-    
+
     <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
     <dependency>
       <groupId>org.aspectj</groupId>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri ="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri ="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="contextPath" value="<%=request.getContextPath()%>"/>
 <!DOCTYPE html>
 <html lang="ko">
@@ -22,23 +22,20 @@
 <title>${param.title}</title> <!-- 상단에 고정 -->
 </head>
 <body>
-  
+
   <h1 id="logo" class="logo">Coupang</h1>
-  
-  <!-- 로그인이 안되면 회원가입을 보여줌 -->
+
   <div class="user-info">
-  <c:if test="${empty sessionScope.loginUser}">
-    <button type="button" onclick="toLoginForm()"><i class="fa-solid fa-arrow-right-to-bracket"></i> 로그인</button>
-    <button type="button" onclick="toSignupForm()"><i class="fa-solid fa-user-plus"></i>회원가입</button>
-    
-  </c:if>
-  <c:if test="${not empty sessionScope.loginUser}">
+    <c:if test="${empty sessionScope.loginUser}">
+      <button type="button" onclick="toLoginForm()"><i class="fa-solid fa-arrow-right-to-bracket"></i>로그인</button>
+      <button type="button" onclick="toSignupForm()"><i class="fa-solid fa-user-plus"></i>회원가입</button>
+    </c:if>
+    <c:if test="${not empty sessionScope.loginUser}">
       <span><a style="color: red;" href="${contextPath}/user/mypage.do?userId=${sessionScope.loginUser.userId}">${sessionScope.loginUser.userName}</a>님 환영합니다.</span>
       <button type="button" onclick="doLogout()">로그아웃</button>
-  </c:if>
+    </c:if>
   </div>
-  
-  
+
   <nav class="gnb-wrap">
     <ul class="gnb">
       <li><a href="${contextPath}/blog/list.do">블로그</a></li>
@@ -48,5 +45,5 @@
       <li><a href="${contextPath}/notice/list.do">공지사항</a></li>
     </ul>
   </nav>
-
-   <div class="wrap">
+  
+  <div class="wrap">

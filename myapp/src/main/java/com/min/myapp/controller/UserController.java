@@ -97,27 +97,27 @@ public class UserController {
       return "redirect:/user/mypage.do?userId=" + userId;
     } catch (Exception e) {
       redirectAttributes.addFlashAttribute("msg", "프로필 변경 실패");
-      return "direct:/";
-    }
-   }
-    @RequestMapping(value="/repw.form")
-    public String repwForm() {
-      return "user/repw";
-    }
-    
-    @RequestMapping(value="repw.do", method=RequestMethod.POST)
-    public String repw(UserDto userDto, RedirectAttributes redirectAttributes) {
-      redirectAttributes.addFlashAttribute("msg", userService.modifyPw(userDto));
-      return "redirect:/user/mypage.do?userId=" + userDto.getUserId();
-    }
-    
-    @RequestMapping(value="/deleteAccount.do")
-    public String deleteAccount(HttpSession session, RedirectAttributes redirectAttributes) {
-      int userId = ((UserDto) session.getAttribute("loginUser")).getUserId();
-      session.invalidate();
-      redirectAttributes.addFlashAttribute("msg", userService.deleteAccount(userId));
       return "redirect:/";
     }
+  }
   
+  @RequestMapping(value="/repw.form")
+  public String repwForm() {
+    return "user/repw";
+  }
 
+  @RequestMapping(value="/repw.do", method=RequestMethod.POST)
+  public String repw(UserDto userDto, RedirectAttributes redirectAttributes) {
+    redirectAttributes.addFlashAttribute("msg", userService.modifyPw(userDto));
+    return "redirect:/user/mypage.do?userId=" + userDto.getUserId();
+  }
+  
+  @RequestMapping(value="/deleteAccount.do")
+  public String deleteAccount(HttpSession session, RedirectAttributes redirectAttributes) {
+    int userId = ((UserDto) session.getAttribute("loginUser")).getUserId();
+    session.invalidate();
+    redirectAttributes.addFlashAttribute("msg", userService.deleteAccount(userId));
+    return "redirect:/";
+  }
+  
 }

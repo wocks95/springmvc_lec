@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri ="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri ="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="contextPath" value="<%=request.getContextPath()%>"/>
 
 <jsp:include page="../layout/header.jsp">
@@ -11,6 +11,7 @@
   
   <div>
     <form action="${contextPath}/notice/regist.do" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="userId" value="${sessionScope.loginUser.userId}">
       <input type="text" name="noticeTitle" placeholder="제목"><br/>
       <textarea rows="5" cols="30" name="noticeContents" placeholder="내용"></textarea><br/>
       <input type="file" name="files" id="files" multiple><br/>

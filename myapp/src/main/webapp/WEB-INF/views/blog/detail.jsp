@@ -1,19 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri ="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri ="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="contextPath" value="<%=request.getContextPath()%>"/>
-  <jsp:include page="../layout/header.jsp">
-    <jsp:param name="title" value="${blog.title}"/>
-  </jsp:include>
-  
-  <style>
-    #contents {
-      width: 200px;
-      min-height: 200px;
-    }
-  </style>
+
+<jsp:include page="../layout/header.jsp">
+  <jsp:param name="title" value="${blog.title}"/>
+</jsp:include>
+
+<style>
+  #contents {
+    width: 200px;
+    min-height: 200px;
+  }
+</style>
+
   <h1>Blog Detail</h1>
- <form id="form-detail" method="post">
+
+  <form id="form-detail" method="post">
   
     <input type="hidden" name="blog_id" value="${blog.blog_id}">
   
@@ -40,6 +43,7 @@
   </form>
   
   <script>
+  
     function submitForm() {
       const formDetail = document.getElementById('form-detail');
       const title = document.getElementById('title');
@@ -53,8 +57,8 @@
         formDetail.submit();
       })
     }
-    
-    function deleteBlog() {
+  
+    function deleteBlog() {      
       document.getElementById('btn-remove').addEventListener('click', (event) => {
         if(confirm('현재 블로그를 삭제할까요?')) {        
           formDetail.action = '${contextPath}/blog/remove.do';
@@ -74,6 +78,8 @@
     toBlogList();
     
   </script>
+
+</div>
 
 </body>
 </html>

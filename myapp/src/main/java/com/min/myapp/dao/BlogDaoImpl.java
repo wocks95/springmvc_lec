@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +19,7 @@ public class BlogDaoImpl implements IBlogDao {
   private Connection conn;
   private PreparedStatement ps;
   private ResultSet rs;
+  
   
   
   @Override
@@ -34,14 +36,18 @@ public class BlogDaoImpl implements IBlogDao {
     if(rs != null) rs.close();
   }
   
+
+ 
   @Override
-  public List<BlogDto> selectBlogList() {
+  public List<BlogDto> selectBlogList(Map<String, Object> map) {
     List<BlogDto> blogList = new ArrayList<BlogDto>();
         try {
           connect();
-          String sql = "SELECT blog_id, title, contents, user_email, hit, modify_dt,create_dt FROM tbl_blog ORDER BY blog_id DESC";
+          String sql = "SELECT blog_id, title, contents, user_email, hit, modify_dt,create_dt FROM tbl_blog ORDER BY blog_id" + map.get("sort") + "LIMIT ?, ?";
           ps = conn.prepareStatement(sql);
-          rs = ps.executeQuery();
+          ps.setInt(1, (int) map.get("offset"));
+          ps.setInt(2, (int) map.get("display"));
+          rs = ps.executeQuery();   
           while(rs.next()) {
             BlogDto blogDto = BlogDto.builder()
                 .blog_id(rs.getInt(1))
@@ -84,7 +90,7 @@ public class BlogDaoImpl implements IBlogDao {
     BlogDto blogDto = null;
     try {
       connect();
-      String sql = "SELECT blog_id, title, contents, user_email, hit, modify_dt, create_dt, FROM tbl_blog WHERE blog_id = ?";
+      String sql = "SELECT blog_id, title, contents, user_email, hit, modify_dt, create_dt FROM tbl_blog WHERE blog_id = ?";
       ps = conn.prepareStatement(sql);
       ps.setInt(1, blog_id);
       rs = ps.executeQuery();

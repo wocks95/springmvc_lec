@@ -80,8 +80,11 @@ public class UserServiceImpl implements IUserService {
 
   @Override
   public String modifyInfo(UserDto userDto) throws Exception {
+    
     // 만약 userEmail과 userName을 모두 공백으로 수정하려고 하면 쿼리문 실행 시 구문에러가 발생하여 예외가 발생합니다.
+    
     return userDao.updateUserInfo(userDto) == 1 ? "회원 정보 변경 완료" : "회원 정보 변경 실패";
+    
   }
   
   @Override

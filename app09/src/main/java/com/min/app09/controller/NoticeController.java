@@ -43,7 +43,6 @@ public class NoticeController {
     redirectAttributes.addFlashAttribute("msg", noticeService.registNotice(multipartRequest));
     return "redirect:/notice/list.do";
   }
- 
   
   @RequestMapping(value="/detail.do")
   public String detail(int noticeId, Model model) {
@@ -52,6 +51,7 @@ public class NoticeController {
     model.addAttribute("attachList", map.get("attachList"));
     return"notice/detail";
   }
+  
   @RequestMapping(value="/remove.do")
   public String remove(int noticeId, RedirectAttributes redirectAttributes) {
     redirectAttributes.addFlashAttribute("msg", noticeService.removeNotice(noticeId));

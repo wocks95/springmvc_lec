@@ -70,7 +70,7 @@ public class BoardServiceImpl implements IBoardService {
   @Override
   public String registerBoard(BoardDto boardDto) {
     
-    // 삽입한 뒤 삭제 결과를 텍스트로 반환합니다.
+    // 삽입한 뒤 삽입 결과를 텍스트로 반환합니다.
     return boardDao.insertBoard(boardDto) == 1 ? "삽입 성공" : "삽입 실패";
   }
   

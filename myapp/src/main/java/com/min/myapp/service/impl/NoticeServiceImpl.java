@@ -1,4 +1,4 @@
-package com.min.myapp.service;
+package com.min.myapp.service.impl;
 
 import java.io.File;
 import java.net.URLEncoder;
@@ -124,11 +124,11 @@ public class NoticeServiceImpl implements INoticeService {
         
         // 첨부 파일 정보를 DB에 저장
         AttachDto attachDto = AttachDto.builder()
-                                .noticeId(noticeDto.getNoticeId())
-                                .filePath(filePath)
-                                .originalFilename(originalFilename)
-                                .filesystemName(filesystemName)
-                                .build();
+                                  .noticeId(noticeDto.getNoticeId())
+                                  .filePath(filePath)
+                                  .originalFilename(originalFilename)
+                                  .filesystemName(filesystemName)
+                                  .build();
         int attachResult = noticeDao.insertAttach(attachDto);
         if(attachResult == 0)
           return "첨부 파일 등록 실패";
@@ -138,8 +138,9 @@ public class NoticeServiceImpl implements INoticeService {
     }
     
     return "공지사항 등록 성공";
-
+    
   }
+  
   @Override
   public Map<String, Object> getNoticeById(int noticeId) {
     return Map.of("n", noticeDao.selectNoticeById(noticeId)
@@ -167,7 +168,7 @@ public class NoticeServiceImpl implements INoticeService {
   public ResponseEntity<Resource> download(int attachId, String userAgent) {
     
     // 다운로드 할 첨부 파일의 정보를 DB에서 가져오기
-    AttachDto attachDto = noticeDao.selectAttachById(attachId);
+    AttachDto attachDto =  noticeDao.selectAttachById(attachId);
     
     // 다운로드 할 첨부 파일을 Resource 객체로 만들기
     Resource resource = new FileSystemResource(new File(attachDto.getFilePath(), attachDto.getFilesystemName()));

@@ -33,7 +33,8 @@ public class FileUtil {
   /**
    * 파일 저장 이름을 반환하는 메소드
    * @param 파일의 원래 이름
-   * @return 파일의 저장 이름. 중복 방지를 위해서 난수 처리된 이름을 사용(UUID : 중복이 없는 랜덤 데이터). 파일의 원래 확정자를 그대로 사용.
+   * @return 파일의 저장 이름. 중복 방지를 위해서 난수 처리된 이름을 사용(UUID : 중복이 없는 랜덤 데이터). 파일의 원래 확장자
+   자를 그대로 사용.
    */
   public String getFilesystemName(String originalFilename) {
     String extensionName = "";

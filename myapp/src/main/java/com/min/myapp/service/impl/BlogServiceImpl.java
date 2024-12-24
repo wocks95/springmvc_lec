@@ -1,5 +1,4 @@
-package com.min.myapp.service;
-
+package com.min.myapp.service.impl;
 
 import java.util.List;
 import java.util.Map;

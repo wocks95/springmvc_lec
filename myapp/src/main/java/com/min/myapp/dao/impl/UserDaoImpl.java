@@ -1,4 +1,4 @@
-package com.min.myapp.dao;
+package com.min.myapp.dao.impl;
 
 import java.util.Map;
 
@@ -21,7 +21,7 @@ public class UserDaoImpl implements IUserDao {
     // userMapper.xml에서 "namespace + insertUser"
     return template.insert("mybatis.mappers.userMapper.insertUser", userDto);
   }
-
+  
   @Override
   public UserDto selectUserByMap(Map<String, Object> map) {
     return template.selectOne("mybatis.mappers.userMapper.selectUserByMap", map);
@@ -46,5 +46,5 @@ public class UserDaoImpl implements IUserDao {
   public int deleteUser(int userId) {
     return template.delete("mybatis.mappers.userMapper.deleteUser", userId);
   }
-  
+
 }

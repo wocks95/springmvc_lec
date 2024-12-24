@@ -1,4 +1,4 @@
-package com.min.myapp.dao;
+package com.min.myapp.dao.impl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,6 +11,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
+import com.min.myapp.dao.IBlogDao;
 import com.min.myapp.dto.BlogDto;
 
 @Repository
@@ -41,29 +42,29 @@ public class BlogDaoImpl implements IBlogDao {
   @Override
   public List<BlogDto> selectBlogList(Map<String, Object> map) {
     List<BlogDto> blogList = new ArrayList<BlogDto>();
-        try {
-          connect();
-          String sql = "SELECT blog_id, title, contents, user_email, hit, modify_dt,create_dt FROM tbl_blog ORDER BY blog_id" + map.get("sort") + "LIMIT ?, ?";
-          ps = conn.prepareStatement(sql);
-          ps.setInt(1, (int) map.get("offset"));
-          ps.setInt(2, (int) map.get("display"));
-          rs = ps.executeQuery();   
-          while(rs.next()) {
-            BlogDto blogDto = BlogDto.builder()
-                .blog_id(rs.getInt(1))
-                .title(rs.getString(2))
-                .contents(rs.getString(3))
-                .user_email(rs.getString(4))
-                .hit(rs.getInt(5))
-                .modify_dt(rs.getTimestamp(6))
-                .create_dt(rs.getTimestamp(7))
-                .build();
-            blogList.add(blogDto);
-          }
-          close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    try {
+      connect();
+      String sql = "SELECT blog_id, title, contents, user_email, hit, modify_dt, create_dt FROM tbl_blog ORDER BY blog_id " + map.get("sort") + " LIMIT ?, ?";
+      ps = conn.prepareStatement(sql);
+      ps.setInt(1, (int)map.get("offset"));
+      ps.setInt(2, (int)map.get("display"));
+      rs = ps.executeQuery();
+      while(rs.next()) {
+        BlogDto blogDto = BlogDto.builder()
+            .blog_id(rs.getInt(1))
+            .title(rs.getString(2))
+            .contents(rs.getString(3))
+            .user_email(rs.getString(4))
+            .hit(rs.getInt(5))
+            .modify_dt(rs.getTimestamp(6))
+            .create_dt(rs.getTimestamp(7))
+            .build();
+        blogList.add(blogDto);
+      }
+      close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     return blogList;
   }
 
@@ -80,7 +81,7 @@ public class BlogDaoImpl implements IBlogDao {
       }
       close();
     } catch (Exception e) {
-       e.printStackTrace();
+      e.printStackTrace();
     }
     return count;
   }
@@ -105,9 +106,8 @@ public class BlogDaoImpl implements IBlogDao {
             .create_dt(rs.getTimestamp(7))
             .build();
       }
-      
     } catch (Exception e) {
-        e.printStackTrace();
+      e.printStackTrace();
     }
     return blogDto;
   }
@@ -128,7 +128,6 @@ public class BlogDaoImpl implements IBlogDao {
     }
     return result;
   }
-  
 
   @Override
   public int updateBlog(BlogDto blogDto) {

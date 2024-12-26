@@ -14,7 +14,8 @@
 
   <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the 
     ${webappRoot}/resources directory -->
-  <resources mapping="/assets/**" location="/assets/" /><!-- 경로상 resources를 써도 상관없지만 헤깔릴까봐 assets로 맞춤 -->
+  <resources mapping="/assets/**" location="/assets/" />
+  <!-- 경로상 resources를 써도 상관없지만 헤깔릴까봐 assets로 맞춤 -->
 
   <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views 
     directory -->

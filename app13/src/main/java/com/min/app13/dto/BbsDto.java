@@ -16,14 +16,11 @@ import lombok.ToString;
 @Builder
 @ToString
 public class BbsDto {
-
-  private int bbId;
+  private int bbsId;
   private String contents;
   private Timestamp createdAt;
   private int state;
-  private int depth; 
+  private int depth;
   private int groupId;
   private int groupOrder;
-  
-  
 }

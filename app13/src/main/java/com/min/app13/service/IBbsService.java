@@ -9,4 +9,6 @@ import com.min.app13.dto.BbsDto;
 public interface IBbsService {
   String registBbs(BbsDto bbsDto);
   Map<String, Object> getBbsList(HttpServletRequest request);
+  String registBbsReply(BbsDto bbsDto);
+  String deleteBbs(int bbsId);
 }

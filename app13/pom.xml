@@ -132,15 +132,14 @@
       <version>${org.springframework-version}</version>
     </dependency>
 
-
-    
-    <!-- 
+    <!--
       Tomcat 9.0 과 함께 사용해야 하는 버전 정리
       
-      1. servlet 4.0.1
+      1. Servlet 4.0.1
       2. JSP 2.3.3
       3. JSTL 1.2.5
-     -->
+    -->
+
     <!-- Servlet -->
     <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
     <dependency>
@@ -150,6 +149,7 @@
       <scope>provided</scope>
     </dependency>
 
+    <!-- JSP -->
     <!-- https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->
     <dependency>
       <groupId>javax.servlet.jsp</groupId>
@@ -177,7 +177,9 @@
       <version>${org.junit-version}</version>
       <scope>test</scope>
     </dependency>
+    
   </dependencies>
+  
   <build>
     <plugins>
       <plugin>

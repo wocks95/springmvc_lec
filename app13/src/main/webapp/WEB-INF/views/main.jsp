@@ -6,12 +6,13 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Welcome</title>
 </head>
 <body>
-  <h1>Welcome Page</h1>
 
+  <h1>Welcome Page</h1>
+  
   <a href="${contextPath}/bbs/list.do">계층형게시판</a>
 
 </body>

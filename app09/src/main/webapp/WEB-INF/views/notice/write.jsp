@@ -6,7 +6,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Notice Write</title>
 </head>
 <body>
@@ -21,15 +21,17 @@
       <button type="submit">작성완료</button>
     </form>
   </div>
-  
+
   <script>
+  
     function attachCheck() {
-      const files = document.getElementById('files'); // document.getElementById('files') >> 배열, 정확히는 files의 property가 배열이다.
       
-      // 개별 파일 크기
+      const files = document.getElementById('files');
+      
+      // 개별 파일 크기 제한
       const limitPerSize = 1024 * 1024 * 10;
       
-      // 전체 파일 크기
+      // 전체 파일 크기 제한
       const limitTotalSize = 1024 * 1024 * 100;
       
       // 전체 파일 크기를 저장할 변수
@@ -38,27 +40,31 @@
       // 첨부 이벤트
       files.addEventListener('change', (event) => {
         
-        for(const file of event.currentTarget.files) { // files 객체(event.currentTarget)의 files 프로퍼티
+        for(const file of event.currentTarget.files) {  // files 객체(event.currentTarget)의 files 프로퍼티
           
-          if(file.size > limitPersize) {
+          if(file.size > limitPerSize) {
             alert('각 첨부 파일의 크기는 최대 10MB입니다.');
             event.currentTarget.value = '';
             return; // 이벤트 핸들러 취소
           }
-            
+          
           totalSize += file.size;
           
           if(totalSize > limitTotalSize) {
             alert('전체 첨부 파일의 크기는 최대 100MB입니다.');
             event.currentTarget.value = '';
-            RETURN;
+            return;
           }
           
         }
+        
       })
+      
     }
+  
     attachCheck();
+  
   </script>
- 
+
 </body>
 </html>

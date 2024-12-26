@@ -13,5 +13,5 @@ CREATE TABLE IF NOT EXISTS tbl_bbs
     depth TINYINT COMMENT '댓글깊이(0:원글, 1:댓글, 2:대댓글, ...)',
     group_id INT COMMENT '그룹화(원글과 해당 원글에 달린 댓글은 같은 번호를 가짐)',
     group_order SMALLINT COMMENT '같은 그룹 내에서 정렬하기 위한 값',
-    CONSTRAINT pt_bbs PRIMARY KEY (bbs_id)
+    CONSTRAINT pk_bbs PRIMARY KEY (bbs_id)
 )ENGINE=INNODB COMMENT='계층형 게시판';

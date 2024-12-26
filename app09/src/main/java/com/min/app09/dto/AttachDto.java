@@ -14,7 +14,6 @@ import lombok.ToString;
 @Builder
 @ToString
 public class AttachDto {
-
   private int attachId;
   private int noticeId;
   private String filePath;

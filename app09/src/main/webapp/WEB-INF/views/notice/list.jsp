@@ -6,7 +6,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Notice List</title>
 </head>
 <body>
@@ -16,7 +16,7 @@
   <div>
     <a href="${contextPath}/notice/write.do">새 공지사항 작성하기</a>
   </div>
-  
+
   <div>
     <c:forEach items="${noticeList}" var="n">
       <div class="notices" data-notice-id="${n.noticeId}"> <!-- 데이터속성  -->
@@ -24,18 +24,17 @@
       </div>
     </c:forEach>
   </div>
-  
+
   <script>
   
     function detailHandle() {
       const notices = document.getElementsByClassName('notices');
       for(const notice of notices) {
         notice.addEventListener('click', (event) => {
-          location.href = '${contextPath}/notice/detail.do?noticeId=' + event.currentTarget.dataset.noticeId;
+          location.href = '${contextPath}/notice/detail.do?noticeId=' + event.currentTarget.dataset.noticeId;          
         })
       }
     }
-  
   
     function msgHandle() {
       const msg = '${msg}';
@@ -44,7 +43,7 @@
     }
     detailHandle();
     msgHandle();
-    
+  
   </script>
 
 </body>
